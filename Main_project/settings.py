@@ -26,8 +26,8 @@ SECRET_KEY = '-)bbrs2gd23g7%dc&1iv-_$#o5n-14)1w#%)!e-u075==y(ocu'
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['phys-mena.herokuapp.com', '127.0.0.1']
-
+#ALLOWED_HOSTS = ['phys-mena.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    #'django.contrib.staticfiles',
     'pages.apps.PagesConfig',
     'clear_cache',
 ]
@@ -120,8 +120,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
