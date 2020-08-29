@@ -1,0 +1,151 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- In order to write latex below-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- above,  order to write latex -->
+
+<!-- Pretty print code: -->
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js">
+</script>
+<!-- above - Pretty print code: -->
+
+<!-- In order to write Tikz->
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+<!-- above,  order to write Tikz -->
+
+<!-- Declare style of html:  -->
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+strong { font-weight: bold; }
+footer {
+    bottom: 0;
+    height: 8em;
+    left: 0;
+    position: relative;
+    width:100%;
+}
+video {
+  max-width: 100%;
+  height: auto;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#navbar {
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+}
+.Navbar_color {
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+.scripts{
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+.button {
+  display: inline-block;
+  background-color: black;
+  border: none;
+  color: white;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -25px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right:15px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+
+
+
+<!-- Navbar -->
+<div class="w3-top" id="navbar">
+  <div class="w3-bar w3-black w3-card">
+    <a href="{% url 'Home' %}" class="w3-bar-item button w3-padding-large"><span>Home </span></a>
+    <a href="{% url 'Phonons' %}" class="w3-bar-item button w3-padding-large"><span>Phonons </span></a>
+    <a href="{% url 'Electrons' %}" class="w3-bar-item button w3-padding-large"><span>Electrons </span></a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large button" title="More"> <span> Scripts </span> <i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="{% url 'Phonons_1D_chain' %}" class="w3-bar-item button"><span>Phonons_1D_chain.py</span></a>
+        <a href="{% url 'HeatCapacity' %}" class="w3-bar-item button"><span>HeatCapacity.py</span></a>
+        <a href="{% url 'Phonons_Energy' %}" class="w3-bar-item button"><span>Phonons_Energy.py</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Navbar END-->
+
+<div class="w3-content scripts" style="max-width:2000px;margin-top:0px">
+  <div class="w3-container w3-content w3-center w3-padding-64 w3-white" style="max-width:800px" id="Home">
+    <h2 class="w3-wide w3-center">Scripts</h2>
+      <p class="w3-opacity w3-center"><i>Eletrons & Phonons scripts</i></p>
+
+<script>
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("navbar").style.top = "0";
+    } else {
+      document.getElementById("navbar").style.top = "-50px";
+    }
+    prevScrollpos = currentScrollPos;
+  }
+    </script>
+
+{% block content %}
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base_scripts.html' %}
+{% load static %}
+{% block content %}
+<!-- The scripts Section -->
+<div class="w3-row-padding w3-padding-32" style="margin:0px" align="left">
+<p>$\mathbf{Script}$: Here is a script for animation for phonons.
+<div align="center" id="Phonons_1D_chain">
+  <pre class="prettyprint w3-justify"style="height:800px;width:700px;border:1px solid #ccc;overflow:auto;" id="Home" >
+      import numpy as np
+      from pylab import *
+      from matplotlib import pyplot as plt
+      from matplotlib import animation, rc
+      import time
+      from IPython.display import HTML, Image
+      #Change plot
+      """
+      rc('text', usetex=True)
+      rc('font', **{'family': 'serif', 'serif': ['Random']})
+      """
+      rc('animation', html='html5')
+      """
+      -----------------------------------------------------------
+      Defining varibles for now, want to change these...
+      -----------------------------------------------------------
+      """
+      N = 10
+      a = 1                  #Interatomc distance
+      #L = N*a                #sample length
+
+      m = 1                  #Mass silicon
+      C = 1                  #Force constant
+      w_0 = 1                #Constant.
+
+      #constant defining u_0
+      hbar = 1               #planck constant
+      rho  = 1               #mas density
+      V    = 1.0             #volume m^3
+
+      """
+      -----------------------------------------------------------
+      Creating class Phonons_Oscillations
+      -----------------------------------------------------------
+      """
+
+
+      class Phonons_Oscillations:
+
+          """
+          -----------------------------------------------------------
+          """
+          #Serve the class function which is used.
+          def __init__(self, N):
+              self.N = N
+
+          def K_values(self):
+              K_list = []
+
+              for i in range(-self.N, self.N+1):
+                  K_list.append(2*np.pi/(self.N*a) * i/2) #Creating discrete modes.
+
+              K = np.array(K_list)
+
+              return K
+
+          def dispersion_relation(self,K):
+              return w_0 * abs(np.sin(1./2. * K *a))
+
+          def u(self, K,w,i):
+              #Amplitude of displacement - apply when working.
+              #u_0  = np.sqrt(4*(1 + n)*hbar/(rho*V*w))
+              return np.cos(K*self.N)*np.cos(w*i)
+
+          """
+          -----------------------------------------------------------
+          """
+
+
+      """
+      Starting to create an animation of atomic displacement.
+      """
+      #Animation goes here. append information from class regarding the animation.
+      def Visulation_animation(N):
+
+          #Establishing the inter-atomic separation.
+          Noa = np.zeros(N)
+          for i in range(N):
+              Noa[i:] += N*a
+
+          fig = plt.figure(1)
+
+          """
+          Need to find a way to generalize the x-lim and ylim
+          """
+          ax = plt.axes(
+          xlim =(0, 120),
+          ylim =(-1,1))
+          #yticks([])
+          #xticks([])
+
+          particles, = ax.plot([],[],'bo')
+
+          lines = []
+          for index in range(N):
+              particles =ax.plot([],[],'bo',color='black', markersize=12)
+              lines.append(particles[0])
+          """
+          def init():
+              for particles in range(len(lines)):
+                  particles.set_data([],[])
+              return lines
+          """
+          print(len(lines))
+          def animate(i):
+
+              for j, particles in enumerate(lines):
+                  particles.set_data(Noa[j] + Solution.u(K[10], w[10],i), 0)
+
+
+              return lines
+
+          anim = animation.FuncAnimation(fig, animate, frames=200,
+                                    interval=50, blit=True)
+
+          return anim, Noa
+
+      Solution = Phonons_Oscillations(N)
+      K = Solution.K_values()
+      w = Solution.dispersion_relation(K)
+
+      anim, Noa = Visulation_animation(N)
+
+      plt.show()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footerm, edit as you like. perheps uio-logo- github div.. -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-dark-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+{% endblock content %}

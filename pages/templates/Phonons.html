@@ -1,0 +1,170 @@
+<!-- templates/Phonons.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Style button-->
+<style>
+  .container {
+    padding: 10px;
+    max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    }
+
+
+</style>
+
+<!-- The Phonons Section, remember to change ID set to Phonons in html -->
+
+  <div class="w3-container w3-content w3-padding-64 w3-white " id="Phonons" style="max-width:800px">
+    <h2 class="w3-wide w3-center">Phonons</h2>
+      <p class="w3-opacity w3-center"><i>Phonons animation!</i></p>
+      <p class="w3-justify">We have created a fictional Home website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+<div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+          <!-- Video of Phonons  -->
+              <video  width="760" height="600" controls id="Phonons_vid">
+                <source id="Phonons_vid" src= "{% static "Phonons_1.mp4" %}"; type="video/mp4" height="75%" width="75%"
+                  style="display: block; margin-left: auto; margin-right:auto;">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p>$\mathbf{Note}$: To access the code follow this link: <a href="{% url 'Phonons_1D_chain' %}">Phonons_1D_chain.py</a></p>
+                  <table class="container">
+                    <tr>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_1.mp4" %}')"> $\mathbf{K}$ = $\frac{2\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_2.mp4" %}')"> $\mathbf{K}$ = $\frac{4\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_3.mp4" %}')"> $\mathbf{K}$ = $\frac{6\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_4.mp4" %}')"> $\mathbf{K}$ = $\frac{8\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_5.mp4" %}')"> $\mathbf{K}$ = $\frac{10\pi}{L}$</button></td>
+                    </tr>
+                    <tr>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_6.mp4" %}')"> $\mathbf{K}$ = $\frac{12\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_7.mp4" %}')"> $\mathbf{K}$ = $\frac{14\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_8.mp4" %}')"> $\mathbf{K}$ = $\frac{16\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_9.mp4" %}')"> $\mathbf{K}$ = $\frac{18\pi}{L}$</button></td>
+                      <td><button type="button" class="w3-button w3-white " onclick="Button_function('{% static "Phonons_10.mp4" %}')"> $\mathbf{K}$ = $\frac{20\pi}{L}$</button></td>
+                    </tr>
+                  </table>
+<br>
+</br>
+<br>
+</br>
+<br>
+</br>
+
+<article>
+  <h2 class="w3-wide" >Density of states - Phonons</h2>
+<br>
+
+<!-- LaTex code goes here: -->
+<p class="w3-opacity" style>
+
+      If the displacement of the atoms is $u_s$ this can be written:
+
+      \begin{equation*}
+        u_s = u_{s+N}
+      \end{equation*}
+      <br>
+
+      Which gives:
+      <br>
+
+      \begin{equation*}
+        ue^{iKsa} = ue^{iK(s+N)a}
+      \end{equation*}
+      <br>
+
+      Dividing by $ue^{iKas}$ on both sides gives:
+      <br>
+
+      \begin{equation*}
+        1 = e^{iKNa}
+      \end{equation*}
+      <br>
+
+      This puts a restriction on $K$ values in the system. This expression only holds if the exponential is a integer number of $2\pi$. Thus:
+      <br>
+      <br>
+      \begin{equation*}
+        K = \frac{2\pi n}{aN} = \frac{2\pi}{L} n
+      \end{equation*}
+      <br>
+      <br>
+
+      By this we see that each possible value of $K$ is separated by $2\pi/L$, which is a direct consequence of the periodic boundary condition.
+
+      <br>
+      <br>
+
+      These figures show the relation between reciprocal space and the discrete K-values. As we can see, the discrete K-values is confined within the 1.st Brillouin zone, and K-vectors outside this zone may be translated inside the the Brillouin zone with the use of the reciprocal lattice vector $\mathbf{G}$ (Will come back to this later: Umklapp processes). The number of discrete K-values varies, and we know that $L = Na$, where $N$ is number of atoms and $a$ is the lattice constant. One can easily determine $N$. Let us assume that the sample size is $L = 10^{-2}m$ and $a = 10^{-9}m$ then the number of modes in this system is $N = 10^7$. This gives a feel of a continuous range of K, which we saw in the dispersion relation.
+
+      <br>
+      <br>
+
+      Density of states is an important
+      concept in condensed matter physics, and it will help us determine the heat capacity in the Debye model. Will come back to this later. To start with, we solve for the density of states in K-space. The density of states is the number of modes per interval in K-space. There are varies ways for solving this type of problem. Firstly we may look at the formula which determines the density of states in K-space:
+      <br>
+      <br>
+      \begin{equation*}
+      DOS_{1D}(K) = \frac{dN}{dK}
+      \end{equation*}
+      <br>
+
+      Where the density of states in a one dimensional chain of atoms. Where we have one atom in the unit cell, and dimension constrained to one dimension. We only need to account for N degrees of freedom, N is the number of atoms, by this we also have N unit cells. Further on we need to find an expression for N. In this case we say that the total number of modes is the total number of unit cells. So by this, we already know that $\Delta K = \frac{2\pi}{L}$.  Meaning that each mode is separated by the factor $\frac{2\pi}{L}$. The the total number of modes:
+      <br>
+
+      \begin{equation*}
+      N = \frac{1}{\frac{2\pi}{L}}  \times 2K = \frac{LK}{\pi}
+      \end{equation*}
+      <br>
+
+      This expression gives us the total number of modes, where $L/2\pi$ accounts for for one of the modes. Therefore we multiply with the K-vector in order to account for all the modes within the interval $(-\pi/a \leq K  \leq \pi/a)$. Also, the factor of two comes from the fact that we have equivalent modes in the mirror of K = 0. Meaning that $\omega_K$ gives the same value for $-\frac{2\pi}{L} $ $\&$ $\frac{2\pi}{L}$. This symmetry need to be accounted for, therefore the factor of two needs to be added. Now we may finalise our result, giving us the density of states in K-space.
+      <br>
+      <br>
+      \begin{equation*}
+      DOS_{1D}(K) = \frac{dN}{dK} = \frac{d}{dK}\frac{LK}{\pi} = \frac{L}{\pi}
+      \end{equation*}
+      <br>
+
+      \begin{equation*}
+      DOS_{1D}(K) = \frac{L}{\pi}
+      \end{equation*}
+
+
+      <br>
+
+      Note that the density of states of phonons is constant in K-space. As we will see, the density of states as a function of $\omega_K$ is not constant.
+
+</p>
+</article>
+  <!-- End section: -->
+</div>
+</div>
+
+
+
+
+<script>
+  function Button_function(i){
+      var vid =   document.getElementById("Phonons_vid");
+      document.getElementById("Phonons_vid").src = i;
+      vid.play();
+      }
+</script>
+
+<footer class="w3-container w3-padding-64 w3-center w3-opacity footer w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Julian Langland</a></p>
+</footer>
+
+
+{% endblock content %}

@@ -1,0 +1,120 @@
+{% extends 'base_scripts.html' %}
+{% load static %}
+{% block content %}
+<!-- The scripts Section -->
+<div class="w3-row-padding w3-padding-32" style="margin:0px" align="left">
+<p>$\mathbf{Script}$: Here is a script for animation for phonons.
+<div align="center" id="Phonons_Energy">
+  <pre class="prettyprint w3-justify"style="height:800px;width:700px;border:1px solid #ccc;overflow:auto;" id="Home" >
+      from numpy import *
+      import matplotlib.pyplot as plt
+      from scipy.integrate import quad
+      from matplotlib import rc, rcParams
+
+      rc('text', usetex=True)
+      rc('font', **{'family': 'serif', 'serif': ['Random']})
+
+      a = 0.235e-9           #Inter-atomic distance in m
+      hbar = 1.0545718e10-34 #Planck constant/2pi
+      N = 10                 #Number of modes, total number of atoms
+      n = 5                  #Quantum number n, indexing which energy state the phonon is at.
+      C =  10e2              #Force constant
+      M =  4.6637066e-26     #Mass of atom Si
+
+      w_0 = sqrt(4*C/M)
+      v = sqrt(C/M)*a
+
+      def K_values(N, a):
+          K_list = []
+
+          for i in range(-N, N+1):
+              K_list.append(2*pi/(N*a) * i/2) #Creating discrete modes.
+          K=array(K_list)
+          return K
+
+      def dispersion_relation(K):
+          return w_0 * abs(sin(1./2. * K * a))
+
+      def dispersion_relation_lowK(K):
+          return v*abs(K)
+
+      def Density_of_states():
+          return 2/(pi*w_0*a)*1/(sqrt(1-(w_k/w_0)**2)) *arcsin(w_k/w_0)/abs(arcsin(w_k/w_0))
+
+      K = K_values(N,a)
+      w_k = dispersion_relation(K)
+      w_D = dispersion_relation_lowK(K)
+      DOS_1D = Density_of_states()
+
+
+      w_cutoff = pi*v/(a)*ones(len(K))
+      K_cutoff = pi/a
+
+      print(w_cutoff[0])
+
+      def figure_Disp_rel():
+          plt.figure(1)
+          plt.plot(K*a, w_k, linewidth=0.5,color="k",marker='o', markersize=2,label='Dispersion relation')
+          plt.plot(K*a, w_D, linewidth=0.5,color="k",marker='o', markersize=2)
+          plt.plot(K*a,w_cutoff,linewidth=0.5, color = "r")
+          plt.plot([-pi, -pi],[0, w_cutoff[-1]],linewidth=0.5, color = "r")
+          plt.plot([pi, pi],[0, w_cutoff[-1]],linewidth=0.5, color = "r")
+          plt.title(" Dispersion relation",fontsize=15)
+          plt.legend(loc='lower right',prop={"size": 12})
+          plt.xlabel('Ka ',fontsize=14)
+          plt.ylabel('$\\omega_K$',fontsize=14)
+          tick_pos= [-pi, 0, pi]
+          labels = ['-$\pi$', '$0$', '$\pi$']
+          plt.xticks(tick_pos, labels)
+          plt.tight_layout()
+      def figure_quanta_en():
+          plt.figure(2)
+
+          for i in range(n):
+              E_n =  (1/2 + i)*hbar*w_k
+              plt.plot(K*a, E_n ,'o',markersize=2,  label="n = {}".format(i))
+
+          plt.title("$\\epsilon_n$ as a function of $K$, for $n=[0,4]$",fontsize=15)
+          plt.legend(loc='upper center',scatterpoints = 1,prop={"size": 12})
+          plt.xlabel('Ka',fontsize=14)
+          plt.ylabel('$\\epsilon_n = (\\frac{1}{2} + n)\\hbar\\omega_K$ ',fontsize=14)
+          tick_pos= [-pi, 0, pi]
+          labels = ['-$\pi$', '$0$', '$\pi$']
+          plt.xticks(tick_pos, labels)
+          plt.yticks([])
+          plt.tight_layout()
+      def figure_DOS():
+          plt.figure(3)
+          plt.plot(w_k, DOS_1D, linewidth=0.5,color="k",marker='o',markersize=2, label='DOS')
+          plt.title(" Density of States as a function of $\\omega_K$ [1D]",fontsize=15)
+          plt.legend(loc='lower right',prop={"size": 12})
+          plt.xlabel('$\\omega_K$ ',fontsize=14)
+          plt.ylabel('$DOS_{1D}(\\omega_K)$',fontsize=14)
+          plt.yticks([])
+          plt.xticks([])
+          plt.tight_layout()
+
+      figure_quanta_en()
+      figure_Disp_rel()
+      figure_DOS()
+
+      plt.show()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footerm, edit as you like. perheps uio-logo- github div.. -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-dark-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+{% endblock content %}
