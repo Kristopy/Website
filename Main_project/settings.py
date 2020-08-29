@@ -25,9 +25,8 @@ SECRET_KEY = '-)bbrs2gd23g7%dc&1iv-_$#o5n-14)1w#%)!e-u075==y(ocu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+ALLOWED_HOSTS = ['phys-mena.herokuapp.com', '127.0.0.1']
 
-#ALLOWED_HOSTS = ['phys-mena.herokuapp.com', '127.0.0.1']
-ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
