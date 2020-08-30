@@ -1,6 +1,5 @@
-{% extends 'base.html' %}
 {% extends 'base_scripts.html' %}
-{% load static %}
+{% load statics %}
 {% block content %}
 <!-- The scripts Section -->
 <div class="w3-row-padding w3-padding-32" style="margin:0px" align="left">
@@ -75,7 +74,7 @@
           plt.ylim([0, 30])
           plt.xlim([0, 1000])
           plt.tight_layout()
-          plt.savefig("/Users/kristoffervarslott/Documents/Website/pages/static/C_V_Sb.png")
+          plt.savefig("/Users/kristoffervarslott/Documents/Website/pages/staticfiles/C_V_Sb.png")
 
       def figure_Pb():
           plt.figure(2)
@@ -92,7 +91,7 @@
           plt.ylim([0, 30])
           plt.xlim([0, 200])
           plt.tight_layout()
-          plt.savefig("/Users/kristoffervarslott/Documents/Website/pages/static/C_V_Pb.png")
+          plt.savefig("/Users/kristoffervarslott/Documents/Website/pages/staticfiles/C_V_Pb.png")
 
       figure_Pb()
       figure_Si()
