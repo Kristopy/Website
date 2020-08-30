@@ -13,9 +13,9 @@
 
 
 <!-- In order to write latex below-->
-<script async type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<!--<script async type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>-->
 
-<script async type="text/x-mathjax-config">
+<!--<script async type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
     jax: ["input/TeX", "output/HTML-CSS"],
@@ -26,8 +26,19 @@
     },
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
-</script>
+</script>-->
 <!-- above,  order to write latex -->
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
 
 
 <!-- Pretty print code: -->
